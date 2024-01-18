@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el número</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Adivina el número</h1>
+        <p>Introduce un número entre <span id="minRange">1</span> y <span id="maxRange">10</span>:</p>
+        <input type="number" id="guessInput">
+        <button onclick="checkGuess()">Verificar</button>
+        <p id="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

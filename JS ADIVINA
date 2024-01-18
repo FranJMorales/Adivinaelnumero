@@ -1,0 +1,41 @@
+let minRange = 1;
+let maxRange = 5;
+let rangeMultiplier = 2; // Factor por el cual se multiplica el rango al acertar
+let randomNumber = generateRandomNumber(minRange, maxRange);
+
+// Obtener elementos del DOM
+const guessInput = document.getElementById('guessInput');
+const message = document.getElementById('message');
+const minRangeSpan = document.getElementById('minRange');
+const maxRangeSpan = document.getElementById('maxRange');
+
+// Función para generar un número aleatorio en el rango especificado
+function generateRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Función para actualizar el rango y el número a adivinar
+function updateRangeAndNumber() {
+    minRange = maxRange + 1;
+    maxRange *= rangeMultiplier;
+    minRangeSpan.textContent = minRange;
+    maxRangeSpan.textContent = maxRange;
+    randomNumber = generateRandomNumber(minRange, maxRange);
+}
+
+// Función para verificar el número ingresado
+function checkGuess() {
+    const userGuess = parseInt(guessInput.value);
+
+    if (isNaN(userGuess) || userGuess < minRange || userGuess > maxRange) {
+        message.textContent = `Por favor, introduce un número válido entre ${minRange} y ${maxRange}.`;
+    } else {
+        if (userGuess === randomNumber) {
+            message.textContent = `¡Adivinaste! El nuevo rango es de ${minRange} a ${maxRange}.`;
+            updateRangeAndNumber();
+            rangeMultiplier++; // Aumentar el multiplicador exponencialmente
+        } else {
+            message.textContent = 'Incorrecto. ¡Inténtalo de nuevo!';
+        }
+    }
+}
